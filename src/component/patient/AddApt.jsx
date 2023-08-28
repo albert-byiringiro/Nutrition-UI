@@ -6,7 +6,6 @@ import {
   } from 'react-redux'
 import { createconversation,resetConversation } from "../../features/Conversation/convoSlice";
 import { createAppointment,resetAppointment } from "../../features/appointment/appointSlice";
-import { createHealth,resetHealth } from "../../features/health/healthSlice";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CHRONIC_DISEASE_CHOICES,
@@ -17,18 +16,6 @@ import { CHRONIC_DISEASE_CHOICES,
     CURRENT_DIET_CHOICES,
     FOOD_ALLERGY_CHOICES,
  } from './Question';
-
- const BLOODTYPE = [
-    ['a+', 'A+'],
-    ['a-', 'A-'],
-    ['b+', 'B+'],
-    ['b-', 'B-'],
-    ['ab+', 'AB+'],
-    ['ab-', 'AB-'],
-    ['o-', 'O-'],
-    ['o+', 'O+'],
-  ];
-  
 
 const AppointmentAdd = () => {
     const navigate = useNavigate();
@@ -44,12 +31,6 @@ const AppointmentAdd = () => {
             currentDiet: '',
             foodAllergy: '',
             physical_disability: false
-        },
-        bmi: {
-            weight: '',
-            height: '',
-            blood_type: '',
-            date_of_birth: ''
         },
         schedule: {
             user: 2,
@@ -88,7 +69,6 @@ const AppointmentAdd = () => {
 
     const handleFormSubmit = () => {
         console.log("Survey Form Data:", formData.survey);
-        console.log("BMI Form Data:", formData.bmi);
         console.log("Schedule Form Data:", formData.schedule);
         try {
             const requestBody = {
@@ -106,7 +86,6 @@ const AppointmentAdd = () => {
               console.log("$%$%$requestion body%$%$",requestBody)
               dispatch(createconversation(requestBody));
               dispatch(createAppointment(formData.schedule));
-              dispatch(createHealth(formData.bmi));
               console.log('Appointment creation initiated.');
               toast.success('Appointment successfully', {
                 position: "top-center",
@@ -286,99 +265,6 @@ const AppointmentAdd = () => {
                     <div>
                         <div className="flex items-center justify-center mt-4">
                             <div className="mx-auto w-full max-w-[550px] bg-white">
-                            <form>
-                                <div className="mb-5">
-                                <label htmlFor="name" className="mb-3 block text-base font-medium text-[#07074D]">
-                                    Full Name
-                                </label>
-                                <input
-                                    type="text"
-                                    name="name"
-                                    id="name"
-                                    placeholder="Full Name"
-                                    className={`w-full rounded-md border bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md`}
-                                />
-                                </div>
-                                <div class="mb-5">
-                                    <label
-                                    for="description"
-                                    class="mb-3 block text-base font-medium text-[#07074D]"
-                                    >
-                                    Weight
-                                    </label>
-                                    <input
-                                    type="text"
-                                    name="weight"
-                                    id="weight"
-                                    onChange={e => handleInputChange("bmi", "weight", e.target.value)}
-                                    value={formData.bmi.weight}
-                                    placeholder="Enter weight"
-                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    />
-                                </div>
-                                <div class="mb-5">
-                                    <label
-                                    for="description"
-                                    class="mb-3 block text-base font-medium text-[#07074D]"
-                                    >
-                                    Height
-                                    </label>
-                                    <input
-                                    type="text"
-                                    name="height"
-                                    id="height"
-                                    onChange={e => handleInputChange("bmi", "height", e.target.value)}
-                                    value={formData.bmi.height}
-                                    placeholder="Enter height"
-                                    className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                    />
-                                </div>
-                                <div class="mb-5">
-                                    <label className="block font-medium mb-2">Blood Type</label>
-                                    <select
-                                        name="blood_type"
-                                        value={formData.bmi.blood_type}
-                                        onChange={e => handleInputChange('bmi', 'blood_type', e.target.value)}
-                                        className="block w-full p-2 border rounded focus:outline-none focus:border-blue-500"
-                                    >
-                                        <option value="">Select...</option>
-                                        {BLOODTYPE.map(([value, label]) => (
-                                        <option key={value} value={value}>
-                                            {label}
-                                        </option>
-                                        ))}
-                                    </select>
-                                </div>
-                                <div class="-mx-3 flex flex-wrap">
-                                    <div class="w-full px-3 sm:w-1/2">
-                                    <div class="mb-5">
-                                        <label
-                                        for="date"
-                                        class="mb-3 block text-base font-medium text-[#07074D]"
-                                        >
-                                        Date Of Birth
-                                        </label>
-                                        <input
-                                        type="date"
-                                        name="date_of_birth"
-                                        id="date"
-                                        onChange={e => handleInputChange("bmi", "date_of_birth", e.target.value)}
-                                        value={formData.bmi.date_of_birth}
-                                        className="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                                        />
-                                    </div>
-                                    </div>
-                                </div>
-                            </form>
-                            </div>
-                        </div>
-                    </div>
-                );
-            case 3:
-                return (
-                    <div>
-                        <div className="flex items-center justify-center mt-4">
-                            <div className="mx-auto w-full max-w-[550px] bg-white">
                                 <form>
                                     <div class="mb-5">
                                         <label
@@ -462,7 +348,7 @@ const AppointmentAdd = () => {
         }
     };
 
-    const steps = ["Survey", "BMI","Appointment"];
+    const steps = ["Survey","Appointment"];
 
     return (
         <div>
@@ -473,15 +359,15 @@ const AppointmentAdd = () => {
 
             <div className="flex p-2 mt-4">
                 {currentStep > 1 && (
-                    <button onClick={handlePrevious}>Previous</button>
+                    <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-red-500 hover:border-transparent rounded" onClick={handlePrevious}>Previous</button>
                 )}
                 {currentStep < steps.length ? (
-                    <div className="flex-auto flex flex-row-reverse">
-                        <button onClick={handleNext}>Next</button>
+                    <div className="flex-auto flex flex-row-reverse ">
+                        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={handleNext}>Next</button>
                     </div>
                 ) : (
                     <div className="flex-auto flex flex-row-reverse">
-                        <button onClick={handleFormSubmit}>Submit</button>
+                        <button class="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded" onClick={handleFormSubmit}>Submit</button>
                     </div>
                 )}
             </div>

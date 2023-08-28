@@ -9,6 +9,7 @@ import hide from "../../image/eye-hide.svg";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { login, resetAuth } from "../../features/auth/authSlice";
+import { getUserMeOrganization } from "../../features/auth/authSlice";
 import Header from "../Header";
 import jwt_decode from 'jwt-decode';
 
@@ -21,6 +22,10 @@ function Login() {
     email: '',
     password: '',
   })
+
+  const userOrganization = useSelector((state) => state.auths.userOrganization)
+    const accountType = userOrganization?.account_type;
+    console.log("!@@@@@@@@@@@@@@",accountType)
   
 
   const {
@@ -40,6 +45,9 @@ function Login() {
   } = useSelector(state => state.auths)
 
   useEffect(() => {
+    dispatch(getUserMeOrganization());
+    }, [dispatch]);
+  useEffect(() => {
     if (isError) {
         toast.error(message)
     }
@@ -47,7 +55,7 @@ function Login() {
     // Redirect when logged in
     if (isSuccess) {
         dispatch(resetAuth)
-        navigate('/patient')
+        navigate("/patient");
         toast.success('Login successful', {
           position: "top-center",
           autoClose: 3000, // 3 seconds

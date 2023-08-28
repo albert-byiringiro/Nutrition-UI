@@ -61,7 +61,7 @@ function Home () {
       console.log("$%$%$requestion body%$%$",requestBody)
       dispatch(createconversation(requestBody));
       console.log('conversation creation initiated.');
-      navigate("/Survey")
+      navigate("/survey")
       
     } catch (error) {
       console.error('Appointment creation failed:', error.message);

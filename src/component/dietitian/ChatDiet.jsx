@@ -21,7 +21,7 @@ const sampleMessages = [
     }
   ];
 
-function Chat() {
+function ChatDiet() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [inputText, setInputText] = useState("");
@@ -112,4 +112,4 @@ function Chat() {
   );
 }
 
-export default Chat;
+export default ChatDiet;

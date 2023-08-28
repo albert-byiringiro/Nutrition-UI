@@ -7,20 +7,20 @@ import {GiMeal} from 'react-icons/gi'
 import { FaWeight } from 'react-icons/fa'
 import {FaPrescriptionBottleAlt} from 'react-icons/fa'
 import { BsArrowLeftCircle } from 'react-icons/bs'
-import HamburgerButton from './HamburgerMenuButton/HamburgerButton'
+import HamburgerButton from '../patient/HamburgerMenuButton/HamburgerButton'
 
-const Byose = () => {
+const ByoseDiet = () => {
   const [open, setOpen] = useState(true)
   const [mobileMenu, setMobileMenu] = useState(false)
   const location = useLocation()
 
   const Menus = [
    { title: 'Home', path: '/', src: <AiTwotoneHome /> },
-   { title: 'Appointment', path: '/survey', src: <AiFillSchedule /> },
-   { title: 'Chat', path: '/chat', src: <AiOutlineWechat /> },
-   { title: 'Meal Plan', path: '/meal', src: <GiMeal /> },
-   { title: 'Prescription', path: '/prescription', src: <FaPrescriptionBottleAlt /> },
-   { title: 'BMI', path: '/bmi', src: <FaWeight />},
+   { title: 'Appointment', path: '/diet/appointment', src: <AiFillSchedule /> },
+   { title: 'Chat', path: '/diet/chat', src: <AiOutlineWechat /> },
+   { title: 'Meal', path: '/diet/meal', src: <GiMeal /> },
+   { title: 'Prescription', path: '/diet/prescription', src: <FaPrescriptionBottleAlt /> },
+   { title: 'Patient Meal plan', path: '/diet/mealplan', src: <FaWeight />},
  ]
   return (
    <>
@@ -39,7 +39,7 @@ const Byose = () => {
           <div className={`flex ${open && 'gap-x-4'} items-center`}>
             {open && (
               <span className='text-xl font-medium whitespace-nowrap dark:text-white'>
-                Patient
+                Dietitian
               </span>
             )}
           </div>
@@ -103,4 +103,4 @@ const Byose = () => {
   );
 };
 
-export default Byose;
+export default ByoseDiet;

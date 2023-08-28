@@ -8,13 +8,16 @@ import Layout from "./component/patient/Layout";
 import Chat from "./component/patient/Chat";
 import Schedule from "./component/patient/Schedule";
 import Bmi from "./component/patient/Bmi";
-import LandingPage from "./component/home/Home";
-import Check from "./component/home/Check";
-import Sidebar from "./component/patient/Sidebar";
 import Meal from "./component/patient/meal/Meal";
 import AppointmentAdd from "./component/patient/AddApt";
 import Prescription from "./component/patient/prescription/Prescription";
 import Patient from "./component/patient/Patient";
+import LayoutDiet from "./component/dietitian/LayoutDiet";
+import Diet from "./component/dietitian/Diet";
+import MealAdd from "./component/dietitian/MealAdd";
+import PrescriptionAdd from "./component/dietitian/PrescriptionAdd";
+import MealPlanAdd from "./component/dietitian/MealPlanAdd";
+import ChatDiet from "./component/dietitian/ChatDiet"
 function App() {
   return (
     <div className="App">
@@ -32,6 +35,13 @@ function App() {
             <Route path="meal" element={<Meal />} />
             <Route path="prescription" element={<Prescription />} />
             <Route path="survey" element={<AppointmentAdd />} />
+          </Route>
+          <Route path="*" element={<LayoutDiet />}>
+            <Route path="diet" element={<Diet />} />
+            <Route path="diet/chat" element={<ChatDiet />} />
+            <Route path="diet/meal" element={<MealAdd />} />
+            <Route path="diet/prescription" element={<PrescriptionAdd />} />
+            <Route path="diet/mealplan" element={<MealPlanAdd />} />
           </Route>
         </Routes>
       </Router>
